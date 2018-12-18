@@ -2,26 +2,23 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import Container from "./components/container";
 import "./App.css";
+import newsApi from "./app-api";
 
 class App extends Component {
+  state = { data: "" };
+
+  componentDidMount() {
+    newsApi()
+      .then(res => res)
+      .then(data => {
+        this.setState({ data });
+        console.log(this.state.data, "im state");
+      });
+  }
   render() {
     return (
       <div className="App">
         <Container />
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
       </div>
     );
   }
