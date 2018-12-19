@@ -11,14 +11,16 @@ class App extends Component {
     newsApi()
       .then(res => res)
       .then(data => {
-        this.setState({ data });
+        const dData = data.map(m => m.articles[0]);
+        this.setState({ data: dData });
         console.log(this.state.data, "im state");
       });
   }
   render() {
+    const { data } = this.state;
     return (
       <div className="App">
-        <Container />
+        <Container mydata={data} />
       </div>
     );
   }
